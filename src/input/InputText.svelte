@@ -2,16 +2,15 @@
   export let config;
   export let inputClass;
   export let el;
+  export let value = '';
 
-  config.value = el[config.applyTo];
-
-  function applyValue() {
-    el[config.applyTo] = config.value;
+  $: if (value || true) {
+    el[config.applyTo] = value;
   }
+
 </script>
 
 <input  
   type="text" 
   class={inputClass} 
-  bind:value={config.value} 
-  on:keyup={applyValue} />
+  bind:value={value} />

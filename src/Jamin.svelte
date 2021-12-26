@@ -3,12 +3,10 @@
 	import { draggable } from 'svelte-drag';
   import Dashboard from './Dashboard.svelte';
   import config from '../jamin.config.mjs';
-
-
   let adminWidthInit = 400;
   let adminWidth = adminWidthInit;
   let content;
-
+  
   function loadContent(e) {
     content = e.target.contentDocument;
   }
@@ -24,7 +22,7 @@
   <div id="container-inner">
     <iframe on:load={loadContent} id="website" src={config.src_url} title="Website"></iframe>
     <div id="admin" class="bg-gray-800" style="width:{adminWidth}px">
-      <div class="w-full">
+      <div class="w-full h-full">
         {#key content}
           {#if content}
             <Dashboard {config} {content} />

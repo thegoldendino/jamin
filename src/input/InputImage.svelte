@@ -1,23 +1,32 @@
 <script>
+  import {onMount} from 'svelte'
+  import { inputState } from './inputState'
   export let config;
   export let inputClass;
   export let el;
 
-  config.value = el[config.applyTo];
+  let value; 
+  
+  onMount(() => {
+    value = $inputState[config.key] || el[config.applyTo];
+    el[config.applyTo] = value;
+    inputState.applyValue(config.key, value)
+  })
 
-  function applyValue() {
-    el[config.applyTo] = config.value;
+  function handleInput() {
+    el[config.applyTo] = value;
+    inputState.applyValue(config.key, value);
   }
 </script>
 
 
 <img 
-  src={config.value} 
+  src={value} 
   class="max-w-full max-h-32 mb-2" alt="Update"
 />
 <input  
   type="url" 
   class={inputClass}
-  bind:value={config.value} 
-  on:keyup={applyValue} 
+  bind:value={value} 
+  on:keyup={handleInput} 
 />
