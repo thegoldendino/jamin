@@ -1,17 +1,17 @@
 <script lang="ts">
-	import Tailwindcss from './Tailwindcss.svelte';
 	import { draggable } from 'svelte-drag';
-  import Dashboard from './Dashboard.svelte';
   import config from '../jamin.config.mjs';
+	import Tailwindcss from './Tailwindcss.svelte';
+  import Dashboard from './Dashboard.svelte';
   let adminWidthInit = 400;
   let adminWidth = adminWidthInit;
-  let content;
+  let jaminEls;
   
   function loadContent(e) {
-    content = e.target.contentDocument;
+    jaminEls = Array.from(e.target.contentDocument.querySelectorAll('[data-jamin]'));
   }
 
-  function resize(e) {
+  function resizeAdmin(e) {
     adminWidth = adminWidthInit + (-1 * e.detail.offsetX);
   }
 </script>
@@ -20,12 +20,12 @@
 
 <div id="container">
   <div id="container-inner">
-    <iframe on:load={loadContent} id="website" src={config.src_url} title="Website"></iframe>
+    <iframe on:load={loadContent} id="website" src={config.startUrl} title="Website"></iframe>
     <div id="admin" class="bg-gray-800" style="width:{adminWidth}px">
       <div class="w-full h-full">
-        {#key content}
-          {#if content}
-            <Dashboard {config} {content} />
+        {#key jaminEls}
+          {#if jaminEls}
+            <Dashboard {jaminEls} />
           {/if}
         {/key}
       </div>
@@ -36,7 +36,7 @@
     style="right:{adminWidthInit - 10}px"
     class="bg-transparent"
     use:draggable={{axis: 'x'}}
-    on:svelte-drag={resize}
+    on:svelte-drag={resizeAdmin}
   ></div>
 </div>
 

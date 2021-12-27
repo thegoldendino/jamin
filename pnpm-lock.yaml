@@ -10,6 +10,8 @@ specifiers:
   just-clone: ^5.0.1
   just-has: ^2.0.1
   just-is-primitive: ^2.1.0
+  just-safe-get: ^4.0.1
+  just-safe-set: ^4.0.1
   postcss: ^8.4.4
   postcss-load-config: ^3.1.0
   rollup: ^2.60.2
@@ -31,6 +33,8 @@ dependencies:
   just-clone: 5.0.1
   just-has: 2.0.1
   just-is-primitive: 2.1.0
+  just-safe-get: 4.0.1
+  just-safe-set: 4.0.1
   sirv-cli: 1.0.14
 
 devDependencies:
@@ -1276,6 +1280,14 @@ packages:
 
   /just-is-primitive/2.1.0:
     resolution: {integrity: sha512-0eJPsD5FL8BvF0XDT3tOH19hxKXqDaCggRKUuutZOrNCWwAmesxomucz9mLqRgfolMwuUT0Cd4e9X6YU9KmuhA==}
+    dev: false
+
+  /just-safe-get/4.0.1:
+    resolution: {integrity: sha512-Yet2Cf1s0h8Jh0A1CMBkR/C4nIN+pCJ4vN7aNk0Eo3d/QhnpWWPEMaxlIxAiH4bUdRCfdJonFabClf21Ls5NMA==}
+    dev: false
+
+  /just-safe-set/4.0.1:
+    resolution: {integrity: sha512-g5iB842qxKSvB0UfZtkDW4JBhDAvQtNxI5sUdkGwVEiYdi8d71nkhvhMhcP+iR5FmVUft190u/SBpNCVTg6zLw==}
     dev: false
 
   /kleur/3.0.3:

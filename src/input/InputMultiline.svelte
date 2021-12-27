@@ -1,14 +1,13 @@
 <script>
+  export let config;
   export let inputClass;
+  export let el;
   export let value = '';
-  export let field;
   
-  const applyTo = field.config.applyTo || 'innerHTML'
+  const applyTo = config.applyTo || 'innerHtml'
 
   $: if (value || true) {
-    field.els.forEach(el => {
-      el[applyTo] = value;
-    })
+    el[applyTo] = value;
   }
 
 </script>

@@ -1,28 +1,25 @@
 <script>
-  import {onMount} from 'svelte'
+  import get from 'just-safe-get';
   import {types} from './types.js';
-  import { inputState } from './inputState'
-  export let el;
-  export let config;
-  
-  let value;
+  import { contentStore } from '../store/contentStore';
+  export let field;
 
-  onMount(() => {
-    value = $inputState[config.key] || value
-  })
+  let value = get($contentStore, field.key);
 
   $: if (value) {
-    inputState.updateValue(config.key, value)
+    contentStore.updateValue(field.key, value)
   }
 </script>
 
+<!-- svelte-ignore a11y-label-has-associated-control -->
 <label class="text-gray-400 mb-4 block">
-  <span class="block mb-1">{config.label}</span>
+  {#if field.config.label}
+    <span class="block mb-1">{field.config.label}</span>
+  {/if}
   <svelte:component 
-    this={types[config.type]} 
+    this={types[field.config.type]} 
     inputClass="w-full bg-gray-400 text-gray-800 rounded py-1 px-2 focus:bg-gray-200"
-    {config}
-    {el}
+    {field}
     bind:value={value}
   />
 </label>

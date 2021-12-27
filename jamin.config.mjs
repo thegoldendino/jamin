@@ -1,70 +1,51 @@
 export default {
-  src_url: '/test-p-01.html',
+  site: 'rvcd',
+  schemaVersion: '0.0.1',
+  startUrl: '/test-p-01.html',
   sections: {
-    arrayOfObjects: {
-      label: 'Array O Section',
+    PECAN_SEC: {
+      label: 'Pecan Section',
       fields: {
-        array01: {
-          label: 'Objects',
+        CLUBNAME: {
+          label: 'Club Name',
+          type: 'text',
+        },
+      },
+    },
+    BACON_SEC: {
+      label: 'Bacon Section',
+      fields: {
+        FLAVORS: {
+          label: 'Flavors',
           type: 'array',
-          field: {
-            type: 'object',
-            applyTo: 'innerHtml',
-            fields: {
-              title: {
-                label: 'Title',
-                type: 'text',
-                applyTo: 'innerHtml',
-              },
-              blurb: {
-                label: 'Blurb',
-                type: 'multiline',
-                applyTo: 'innerHtml',
-              },
+          fields: {
+            FLAVOR: {
+              type: 'text',
             },
           },
         },
       },
     },
-    input01: {
-      label: 'Basic Input',
+    APPLE_SEC: {
+      label: 'Apple Section',
       fields: {
-        inputText: {
-          label: 'Input Text',
-          type: 'text',
-          applyTo: 'innerHTML',
-        },
-        inputImage: {
-          label: 'Input Image',
-          type: 'image',
-          applyTo: 'src',
-        },
-      },
-    },
-    input02: {
-      label: 'Basic Input',
-      fields: {
-        inputText: {
-          label: 'Input Text',
-          type: 'text',
-          applyTo: 'innerHTML',
-        },
-        inputImage: {
-          label: 'Input Image',
-          type: 'image',
-          applyTo: 'src',
-        },
-      },
-    },
-    array: {
-      label: 'Arrays',
-      fields: {
-        inputText: {
-          label: 'Input Texts',
+        HONEYCRISPS: {
+          label: 'Honeycrips',
           type: 'array',
-          field: {
-            type: 'text',
-            applyTo: 'innerHTML',
+          fields: {
+            APPLE: {
+              type: 'object',
+              fields: {
+                NAME: {
+                  label: 'Name',
+                  type: 'text',
+                },
+                BIO: {
+                  label: 'Biography',
+                  type: 'multiline',
+                },
+              },
+            },
           },
         },
       },

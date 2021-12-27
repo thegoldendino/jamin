@@ -1,22 +1,15 @@
 <script>
-  import {onMount} from 'svelte'
-  import { inputState } from './inputState'
   export let config;
   export let inputClass;
   export let el;
+  export let value = '';
 
-  let value; 
+  const applyTo = config.applyTo || 'src'
   
-  onMount(() => {
-    value = $inputState[config.key] || el[config.applyTo];
-    el[config.applyTo] = value;
-    inputState.applyValue(config.key, value)
-  })
-
-  function handleInput() {
-    el[config.applyTo] = value;
-    inputState.applyValue(config.key, value);
+  $: if (value || true) {
+    el[applyTo] = value;
   }
+
 </script>
 
 
@@ -28,5 +21,4 @@
   type="url" 
   class={inputClass}
   bind:value={value} 
-  on:keyup={handleInput} 
 />

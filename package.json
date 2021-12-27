@@ -34,6 +34,8 @@
     "just-clone": "^5.0.1",
     "just-has": "^2.0.1",
     "just-is-primitive": "^2.1.0",
+    "just-safe-get": "^4.0.1",
+    "just-safe-set": "^4.0.1",
     "sirv-cli": "^1.0.14"
   }
 }
