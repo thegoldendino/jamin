@@ -1,6 +1,6 @@
 export default {
   APPLE_SEC: {
-    APPLE_LIST: [
+    HONEYCRISPS: [
       { NAME: 'Herbert', BIO: "Is this love? That I'm feeling?" },
       {
         NAME: 'Joan',

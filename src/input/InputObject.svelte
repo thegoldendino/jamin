@@ -6,22 +6,24 @@
   export let field;
 
   let items = {};
+  value = value || {};
 
-  $: if (Object.entries(value).length) {
-    items = Object.entries(value).reduce((acc, [itemKey, itemVal]) => {
-      const itemValEl = field.els[0].querySelector(`[data-jamin='${field.key}.${itemKey}']`)
-      const itemConfig = field.config.fields[itemKey]
+  $: if (Object.entries(field.config.fields).length) {
+    items = Object.entries(field.config.fields).reduce((acc, [itemKey, itemConfig]) => {
+      const fullItemKey = `${field.key}.${itemKey}`;
+      const itemValEl = field.els[0].querySelector(`[data-jamin='${fullItemKey}']`)
       return {...acc, [itemKey]: {
         component: types[itemConfig.type],
         els: [itemValEl], 
         config: itemConfig,
-        value: itemVal,
+        value: value[itemKey],
+        key: fullItemKey,
       }};
     }, {})
   }
 </script>
 
-{#each Object.keys(value) as key}
+{#each Object.keys(field.config.fields) as key}
   <div class="mb-1">
     {#if items[key]}
       <svelte:component 

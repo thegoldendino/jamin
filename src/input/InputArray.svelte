@@ -13,7 +13,7 @@
   const template = field.els.find(el => el.dataset.jamin === field.key).children[0];
   const itemConfig = Object.values(field.config.fields)[0];
 
-  $: if (value?.length && template) {
+  $: if (value.length && template) {
     arrayEl.replaceChildren();
     items = value.map((itemVal) => {
       const itemEl = template.cloneNode(true)
@@ -26,6 +26,7 @@
         els: [itemValEl], 
         config: itemConfig,
         value: itemVal,
+        key: arrayItemKey,
       };
     })
   }
