@@ -1,7 +1,7 @@
 export default {
   site: 'rvcd',
   schemaVersion: '0.0.1',
-  startUrl: '/test-p-01.html',
+  startUrl: '/test-p-02.html',
   sections: {
     PECAN_SEC: {
       label: 'Pecan Section',
@@ -21,6 +21,25 @@ export default {
           fields: {
             FLAVOR: {
               type: 'text',
+            },
+          },
+        },
+      },
+    },
+    BIRD_SEC: {
+      label: 'Bird Section',
+      fields: {
+        KING_BIRD: {
+          label: 'King Bird',
+          type: 'object',
+          fields: {
+            NAME: {
+              label: 'Name',
+              type: 'text',
+            },
+            PHOTO: {
+              label: 'Photo',
+              type: 'image',
             },
           },
         },

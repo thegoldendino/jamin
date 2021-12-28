@@ -14,4 +14,11 @@ export default {
   PECAN_SEC: {
     CLUBNAME: 'Pirates of Pecan Valley',
   },
+  BIRD_SEC: {
+    KING_BIRD: {
+      NAME: 'Big Red',
+      PHOTO:
+        'https://ichef.bbci.co.uk/news/976/cpsprodpb/67CF/production/_108857562_mediaitem108857561.jpg',
+    },
+  },
 };

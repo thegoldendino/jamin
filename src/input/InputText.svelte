@@ -1,5 +1,5 @@
 <script>
-  export let inputClass;
+  export let inputClass = '';
   export let value = '';
   export let field;
   

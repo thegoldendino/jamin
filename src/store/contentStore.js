@@ -8,6 +8,7 @@ function createContentStore(initStore = {}) {
   function updateValue(key, value) {
     update((state) => {
       safeSet(state, key, value);
+      console.log('update', key, value, state);
       return { ...state };
     });
   }
