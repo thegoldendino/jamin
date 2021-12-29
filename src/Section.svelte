@@ -14,9 +14,11 @@
 </script>
 
 <details open>
-  <summary>
+  <summary class="font-semibold text-gray-300 cursor-pointer hover:text-gray-100">
     {#if section.config.label}
-      <h2 class="font-semibold text-gray-300 pb-2 inline-block cursor-pointer">{section.config.label}</h2>
+      <span class="left-arrow mr-2">&#9665;</span>
+      <h2 class="pb-2 inline-block">{section.config.label}</h2>
+      <span class="down-arrow ml-2">&#9661;</span>
     {/if}
     <hr class="border-gray-300 mb-4"/>
   </summary>
@@ -29,4 +31,25 @@
   details > summary {
     list-style: none;
   }
+
+  details {
+    @apply text-right;
+  }
+  details[open] {
+    @apply text-left;
+  }
+  details .left-arrow {
+    @apply inline-block
+  }
+  details[open] .left-arrow{
+    @apply hidden
+  }
+  details .down-arrow {
+    @apply hidden
+  }
+
+  details[open] .down-arrow {
+    @apply inline-block;
+  }
+
 </style>
