@@ -1,8 +1,10 @@
 <script lang="ts">
 	import { draggable } from 'svelte-drag';
-  import config from '../jamin.config.mjs';
 	import Tailwindcss from './Tailwindcss.svelte';
   import Dashboard from './Dashboard.svelte';
+
+  export let config;
+
   let adminWidthInit = 400;
   let adminWidth = adminWidthInit;
   let jaminEls;
