@@ -4,6 +4,8 @@
   export let inputClass;
   export let value = {};
   export let field;
+  export let autoFocus;
+  export let setFocus;
 
   let items = {};
   value = value || {};
@@ -23,13 +25,15 @@
   }
 </script>
 
-{#each Object.keys(field.config.fields) as key}
+{#each Object.keys(field.config.fields) as key, i}
   <div class="mb-1">
     {#if items[key]}
       <svelte:component 
         this={items[key].component} 
         field={items[key]}
         bind:value={value[key]}
+        bind:autoFocus={autoFocus}
+        setFocus={setFocus && i === 0}
         {inputClass}
       />
     {/if}

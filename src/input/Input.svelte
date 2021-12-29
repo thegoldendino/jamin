@@ -3,6 +3,8 @@
   import {types} from './types.js';
   import { contentStore } from '../store/contentStore';
   export let field;
+  export let autoFocus;
+  export let setFocus;
 
   let value = get($contentStore, field.key);
 
@@ -20,6 +22,7 @@
     this={types[field.config.type]} 
     inputClass="w-full bg-gray-400 text-gray-800 rounded py-1 px-2 focus:bg-gray-200"
     {field}
+    bind:autoFocus={autoFocus} setFocus={setFocus}
     bind:value={value}
   />
 </label>

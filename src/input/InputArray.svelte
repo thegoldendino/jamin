@@ -4,8 +4,11 @@
   export let inputClass;
   export let value = [];
   export let field;
+  export let autoFocus;
+  export let setFocus;
 
   let items = [];
+  let focusLast = false;
 
   const arrayItemKey = [field.key, Object.keys(field.config.fields)[0]].join('.');
 
@@ -32,12 +35,22 @@
   }
 
   function addItem() {
+    focusLast = true;
+    autoFocus = true;
+    setFocus = true;
     value = [...value, null]
   }
 
   function removeItem(index) {
+    autoFocus = true;
+    setFocus = true;
     value.splice(index, 1);
-    value = [...value]
+    value = [...value];
+  }
+
+  function firstOrLast(i) {
+    console.log('firstOrLast', focusLast, i, value.length - 1)
+    return (focusLast && i === value.length - 1) || (!focusLast && i === 0)
   }
 </script>
 
@@ -48,13 +61,15 @@
         <svelte:component 
           this={items[i].component} 
           field={items[i]}
+          bind:autoFocus={autoFocus} setFocus={setFocus && firstOrLast(i)}
           bind:value={val}
           {inputClass}
         />
       {/if}
     </div>
     <div class="flex-none">
-      <button 
+      <button
+        tabindex="-1"
         on:click={() => removeItem(i)} 
         class="w-8 bg-red-300 ml-2 rounded text-center py-1 text-red-500 font-bold hover:bg-red-500 hover:text-red-300">
         X

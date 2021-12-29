@@ -1,6 +1,8 @@
 <script>
   import Input from './input/Input.svelte';
   export let section;
+  export let autoFocus;
+  export let setFocus;
 
   const fields = (section.config.fields ? Object.keys(section.config.fields) : [])
     .map((fieldKey) => {
@@ -22,8 +24,8 @@
     {/if}
     <hr class="border-gray-300 mb-4"/>
   </summary>
-  {#each fields as field}
-    <Input {field} />
+  {#each fields as field, i}
+    <Input {field} bind:autoFocus={autoFocus} setFocus={setFocus && i === 0} />
   {/each}
 </details>
 
@@ -39,13 +41,13 @@
     @apply text-left;
   }
   details .left-arrow {
-    @apply inline-block
+    @apply inline-block;
   }
   details[open] .left-arrow{
-    @apply hidden
+    @apply hidden;
   }
   details .down-arrow {
-    @apply hidden
+    @apply hidden;
   }
 
   details[open] .down-arrow {

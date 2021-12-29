@@ -3,6 +3,8 @@
   import Section from './Section.svelte';
   export let jaminEls;
 
+  let autoFocus = true;
+
   const sections = Object.keys(config.sections)
     .filter((sectionKey) => (
       jaminEls.map((el) => el.dataset.jamin)
@@ -18,8 +20,8 @@
 </script>
 
 <div class="min-w-full p-4">
-  {#each sections as section}
-    <Section {section} />
+  {#each sections as section, i}
+    <Section {section} bind:autoFocus={autoFocus} setFocus={i === 0} />
   {/each}
 </div>
 
