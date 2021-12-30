@@ -16,9 +16,9 @@ npm run dev
 ### Start Up Firebase emulator
 
 ```bash
-firebase emulators:start --project demo-jamin
+npm run firebase
 ```
 
-## Open test Jamin site
+## Open demo Jamin site
 
 Navigate to [localhost:5000](http://localhost:5000). You should see your app running. Edit a component file in `src`, save it, and reload the page to see your changes.
