@@ -20,7 +20,9 @@
     arrayEl.replaceChildren();
     items = value.map((itemVal) => {
       const itemEl = template.cloneNode(true)
-      const itemValEl = itemEl.dataset?.jamin === arrayItemKey ? itemEl : itemEl.querySelector(`[data-jamin='${arrayItemKey}']`)
+      const itemValEl = itemEl.dataset?.jamin === arrayItemKey 
+        ? itemEl 
+        : itemEl.querySelector(`[data-jamin='${arrayItemKey}']`)
 
       arrayEl.appendChild(itemEl);
 

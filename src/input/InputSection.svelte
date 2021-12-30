@@ -1,5 +1,5 @@
 <script>
-  import Input from './input/Input.svelte';
+  import Input from './Input.svelte';
   export let section;
   export let autoFocus;
   export let setFocus;

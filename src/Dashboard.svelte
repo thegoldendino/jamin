@@ -1,6 +1,6 @@
 <script>
   import config from '../jamin.config.mjs';
-  import Section from './Section.svelte';
+  import InputSection from './input/InputSection.svelte';
   export let jaminEls;
 
   let autoFocus = true;
@@ -21,7 +21,7 @@
 
 <div class="min-w-full p-4">
   {#each sections as section, i}
-    <Section {section} bind:autoFocus={autoFocus} setFocus={i === 0} />
+    <InputSection {section} bind:autoFocus={autoFocus} setFocus={i === 0} />
   {/each}
 </div>
 
