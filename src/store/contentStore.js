@@ -7,7 +7,7 @@ function createContentStore(initStore = {}) {
 
   function updateValue(key, value) {
     update((state) => {
-      safeSet(state.pages, key.join('.'), value);
+      safeSet(state, key.join('.'), value);
       return { ...state };
     });
   }

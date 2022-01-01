@@ -1,4 +1,7 @@
 export default {
+  global: {
+    INFO_EMAIL: 'test@gmail.com',
+  },
   pages: {
     '/test-p-01': {
       PECAN_SEC: {

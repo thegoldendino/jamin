@@ -6,7 +6,7 @@
   export let autoFocus;
   export let setFocus;
 
-  let value = safeGet($contentStore.pages, field.dbKey.join('.'));
+  let value = safeGet($contentStore, field.dbKey.join('.'));
 
   $: if (value) {
     contentStore.updateValue(field.dbKey, value)

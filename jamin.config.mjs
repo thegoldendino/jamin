@@ -2,6 +2,12 @@ export default {
   site: 'rvcd',
   schemaVersion: '0.0.1',
   startUrl: '/test-p-01',
+  global: {
+    INFO_EMAIL: {
+      label: 'Info Email',
+      type: 'email',
+    },
+  },
   pages: {
     '/test-p-01': {
       PECAN_SEC: {
