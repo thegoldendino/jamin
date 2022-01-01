@@ -34,7 +34,6 @@ export default {
         fields: {
           KING_BIRD: {
             label: 'King Bird',
-            type: 'object',
             fields: {
               NAME: {
                 label: 'Name',
@@ -56,7 +55,6 @@ export default {
             type: 'array',
             fields: {
               APPLE: {
-                type: 'object',
                 display: 'NAME',
                 fields: {
                   NAME: {

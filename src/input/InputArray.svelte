@@ -26,7 +26,7 @@
       field.el?.appendChild(itemEl);
 
       return {
-        component: types[itemConfig.type],
+        component: types[itemConfig.type || 'object'],
         el: itemValEl, 
         config: itemConfig,
         value: itemVal,
