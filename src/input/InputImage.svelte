@@ -17,10 +17,8 @@
   })
 
   
-  $: if (value || true) {
-    field.els.forEach(el => {
-      el[applyTo] = value;
-    })
+  $: if (value || field.el[applyTo]) {
+    field.el[applyTo] = value;
   }
 
 </script>

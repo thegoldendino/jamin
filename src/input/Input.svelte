@@ -1,15 +1,15 @@
 <script>
-  import get from 'just-safe-get';
+  import safeGet from 'just-safe-get';
   import {types} from './types.js';
   import { contentStore } from '../store/contentStore';
   export let field;
   export let autoFocus;
   export let setFocus;
 
-  let value = get($contentStore, field.key);
+  let value = safeGet($contentStore.pages, field.dbKey.join('.'));
 
   $: if (value) {
-    contentStore.updateValue(field.key, value)
+    contentStore.updateValue(field.dbKey, value)
   }
 </script>
 

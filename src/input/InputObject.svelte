@@ -12,14 +12,12 @@
 
   $: if (Object.entries(field.config.fields).length) {
     items = Object.entries(field.config.fields).reduce((acc, [itemKey, itemConfig]) => {
-      const fullItemKey = `${field.key}.${itemKey}`;
-      const itemValEl = field.els[0].querySelector(`[data-jamin='${fullItemKey}']`)
       return {...acc, [itemKey]: {
         component: types[itemConfig.type],
-        els: [itemValEl], 
+        el: field.el?.querySelector(`[data-jamin$='.${itemKey}']`),
         config: itemConfig,
         value: value[itemKey],
-        key: fullItemKey,
+        dbKey: [...field.dbKey, itemKey],
       }};
     }, {})
   }

@@ -1,20 +1,19 @@
 <script>
   import config from '../jamin.config.mjs';
   import InputSection from './input/InputSection.svelte';
-  export let jaminEls;
+  export let pageKey;
+  export let el;
 
   let autoFocus = true;
+  
+  const pageConfig = config.pages[pageKey]
 
-  const sections = Object.keys(config.sections)
-    .filter((sectionKey) => (
-      jaminEls.map((el) => el.dataset.jamin)
-        .includes(sectionKey)
-    ))
+  const sections = Object.keys(pageConfig)
     .map((sectionKey) => {
       return {
-        key: sectionKey,
-        config: config.sections[sectionKey],
-        els: jaminEls.filter(el => el.dataset.jamin.startsWith(sectionKey))
+        dbKey: [pageKey, sectionKey],
+        config: pageConfig[sectionKey],
+        el: el?.querySelector(`[data-jamin='${sectionKey}']`)
       }
     });
 </script>

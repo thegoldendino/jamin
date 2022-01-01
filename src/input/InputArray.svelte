@@ -10,28 +10,27 @@
   let items = [];
   let focusLast = false;
 
-  const arrayItemKey = [field.key, Object.keys(field.config.fields)[0]].join('.');
+  const arrayItemKey = Object.keys(field.config.fields)[0];
 
-  const arrayEl = field.els.find(el => el.dataset.jamin === field.key)
-  const template = field.els.find(el => el.dataset.jamin === field.key).children[0];
+  const template = field.el?.children[0];
   const itemConfig = Object.values(field.config.fields)[0];
 
   $: if (value.length && template) {
-    arrayEl.replaceChildren();
+    field.el?.replaceChildren();
     items = value.map((itemVal) => {
       const itemEl = template.cloneNode(true)
-      const itemValEl = itemEl.dataset?.jamin === arrayItemKey 
+      const itemValEl = itemEl.dataset?.jamin?.endsWith(arrayItemKey) 
         ? itemEl 
-        : itemEl.querySelector(`[data-jamin='${arrayItemKey}']`)
+        : itemEl?.querySelector(`[data-jamin$='${arrayItemKey}']`)
 
-      arrayEl.appendChild(itemEl);
+      field.el?.appendChild(itemEl);
 
       return {
         component: types[itemConfig.type],
-        els: [itemValEl], 
+        el: itemValEl, 
         config: itemConfig,
         value: itemVal,
-        key: arrayItemKey,
+        dbKey: [...field.dbKey, arrayItemKey],
       };
     })
   }
@@ -51,7 +50,6 @@
   }
 
   function firstOrLast(i) {
-    console.log('firstOrLast', focusLast, i, value.length - 1)
     return (focusLast && i === value.length - 1) || (!focusLast && i === 0)
   }
 </script>

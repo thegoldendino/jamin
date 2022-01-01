@@ -6,11 +6,10 @@
 
   const fields = (section.config.fields ? Object.keys(section.config.fields) : [])
     .map((fieldKey) => {
-      const key = `${section.key}.${fieldKey}`
       return {
-        key,
+        dbKey: [...section.dbKey, fieldKey],
         config: section.config.fields[fieldKey],
-        els: section.els.filter(el => el.dataset.jamin.startsWith(key))
+        el: section.el?.querySelector(`[data-jamin$='.${fieldKey}']`)
       }
     }); 
 </script>

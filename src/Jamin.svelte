@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { draggable } from 'svelte-drag';
+  import { setContext } from 'svelte';
 	import Tailwindcss from './Tailwindcss.svelte';
   import Dashboard from './Dashboard.svelte';
 
@@ -7,10 +8,12 @@
 
   let adminWidthInit = 400;
   let adminWidth = adminWidthInit;
-  let jaminEls;
+  let el;
+  let pageKey;
   
   function loadContent(e) {
-    jaminEls = Array.from(e.target.contentDocument.querySelectorAll('[data-jamin]'));
+    pageKey = e.target.contentWindow.location.pathname;
+    el = e.target.contentDocument;
   }
 
   function resizeAdmin(e) {
@@ -25,9 +28,9 @@
     <iframe on:load={loadContent} id="website" src={config.startUrl} title="Website"></iframe>
     <div id="admin" class="bg-gray-800" style="width:{adminWidth}px">
       <div class="w-full h-full">
-        {#key jaminEls}
-          {#if jaminEls}
-            <Dashboard {jaminEls} />
+        {#key el}
+          {#if el}
+            <Dashboard {el} {pageKey} />
           {/if}
         {/key}
       </div>
