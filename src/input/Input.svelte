@@ -15,11 +15,11 @@
 
 <!-- svelte-ignore a11y-label-has-associated-control -->
 <label class="text-gray-400 mb-4 block">
-  {#if field.config.label}
+  <!-- {#if field.config.label}
     <span class="block mb-1">{field.config.label}</span>
-  {/if}
+  {/if} -->
   <svelte:component 
-    this={types[field.config.type]} 
+    this={types[field.config.type || 'object']} 
     inputClass="w-full bg-gray-400 text-gray-800 rounded py-1 px-2 focus:bg-gray-200"
     {field}
     bind:autoFocus={autoFocus} setFocus={setFocus}

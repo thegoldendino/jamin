@@ -55,7 +55,7 @@
 </script>
 
 {#each value as val, i}
-  <div class="flex mb-1">
+  <div class="flex mb-1 items-center">
     <div class="flex-grow">
       {#if items[i]}
         <svelte:component 

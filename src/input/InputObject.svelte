@@ -23,17 +23,54 @@
   }
 </script>
 
-{#each Object.keys(field.config.fields) as key, i}
-  <div class="mb-1">
-    {#if items[key]}
-      <svelte:component 
-        this={items[key].component} 
-        field={items[key]}
-        bind:value={value[key]}
-        bind:autoFocus={autoFocus}
-        setFocus={setFocus && i === 0}
-        {inputClass}
-      />
-    {/if}
-  </div>
-{/each}
+<details open>
+  {#if field.config.label }
+    <summary class="font-semibold text-gray-300 cursor-pointer hover:text-gray-100">
+      <span class="left-arrow mr-2">&#9665;</span>
+      <h2 class="pb-2 inline-block">{field.config.label}</h2>
+      <span class="down-arrow ml-2">&#9661;</span>
+      <hr class="border-gray-300 mb-4"/>
+    </summary>
+  {/if}
+  {#each Object.keys(field.config.fields) as key, i}
+    <div class="mb-1">
+      {#if items[key]}
+        <svelte:component 
+          this={items[key].component} 
+          field={items[key]}
+          bind:value={value[key]}
+          bind:autoFocus={autoFocus}
+          setFocus={setFocus && i === 0}
+          {inputClass}
+        />
+      {/if}
+    </div>
+  {/each}
+</details>
+
+<style>
+  details > summary {
+    list-style: none;
+  }
+
+  details {
+    @apply text-right;
+  }
+  details[open] {
+    @apply text-left;
+  }
+  details .left-arrow {
+    @apply inline-block;
+  }
+  details[open] .left-arrow{
+    @apply hidden;
+  }
+  details .down-arrow {
+    @apply hidden;
+  }
+
+  details[open] .down-arrow {
+    @apply inline-block;
+  }
+
+</style>
