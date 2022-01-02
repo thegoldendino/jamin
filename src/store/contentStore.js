@@ -1,9 +1,8 @@
 import safeSet from 'just-safe-set';
 import { writable } from 'svelte/store';
-import contentStub from './contentStub.mjs';
 
-function createContentStore(initStore = {}) {
-  const { subscribe, update } = writable(initStore);
+function createContentStore() {
+  const { subscribe, update, set } = writable({});
 
   function updateValue(key, value) {
     update((state) => {
@@ -13,9 +12,10 @@ function createContentStore(initStore = {}) {
   }
 
   return {
+    set,
     subscribe,
     updateValue,
   };
 }
 
-export const contentStore = createContentStore(contentStub);
+export const contentStore = createContentStore();

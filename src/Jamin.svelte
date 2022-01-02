@@ -1,17 +1,22 @@
 <script lang="ts">
 	import { draggable } from 'svelte-drag';
-  import { setContext } from 'svelte';
 	import Tailwindcss from './Tailwindcss.svelte';
   import Dashboard from './Dashboard.svelte';
+  import {contentStore } from './store/contentStore.js';
 
   export let config;
+  export let content;
 
   let adminWidthInit = 400;
   let adminWidth = adminWidthInit;
   let el;
   let pageKey;
+
+  $: if (content) {
+    contentStore.set(content)
+  }
   
-  function loadContent(e) {
+  function loadContentDocument(e) {
     pageKey = e.target.contentWindow.location.pathname;
     el = e.target.contentDocument;
   }
@@ -25,7 +30,7 @@
 
 <div id="container">
   <div id="container-inner">
-    <iframe on:load={loadContent} id="website" src={config.startUrl} title="Website"></iframe>
+    <iframe on:load={loadContentDocument} id="website" src={config.startUrl} title="Website"></iframe>
     <div id="admin" class="bg-gray-800" style="width:{adminWidth}px">
       <div class="w-full h-full">
         {#key el}

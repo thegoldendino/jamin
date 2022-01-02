@@ -54,33 +54,43 @@
   }
 </script>
 
-{#each value as val, i}
-  <div class="flex mb-1 items-center">
-    <div class="flex-grow">
-      {#if items[i]}
-        <svelte:component 
-          this={items[i].component} 
-          field={items[i]}
-          bind:autoFocus={autoFocus} setFocus={setFocus && firstOrLast(i)}
-          bind:value={val}
-          {inputClass}
-        />
-      {/if}
-    </div>
-    <div class="flex-none">
-      <button
-        tabindex="-1"
-        on:click={() => removeItem(i)} 
-        class="w-8 bg-red-300 ml-2 rounded text-center py-1 text-red-500 font-bold hover:bg-red-500 hover:text-red-300">
-        X
-      </button>
-    </div>
-  </div>
-{/each}
+<div class="bg-gray-300 bg-opacity-10 px-2 py-1" >
+  {#if field.config.label}
+    <summary
+      class:uppercase="{field.dbKey.length === 3}"
+      class="font-semibold text-gray-300 mb-1" >
+      {field.config.label}
+    </summary>
+  {/if}
 
-<div>
-  <button on:click={addItem} class="hover:text-gray-300 pl-2">
-    <span>+</span>
-    <span>New Item</span>
-  </button>
-</div> 
+  {#each value as val, i}
+    <div class="flex mb-1 items-center">
+      <div class="flex-grow">
+        {#if items[i]}
+          <svelte:component 
+            this={items[i].component} 
+            field={items[i]}
+            bind:autoFocus={autoFocus} setFocus={setFocus && firstOrLast(i)}
+            bind:value={val}
+            {inputClass}
+          />
+        {/if}
+      </div>
+      <div class="flex-none">
+        <button
+          tabindex="-1"
+          on:click={() => removeItem(i)} 
+          class="w-8 bg-red-300 ml-2 rounded text-center py-1 text-red-500 font-bold hover:bg-red-500 hover:text-red-300">
+          X
+        </button>
+      </div>
+    </div>
+  {/each}
+
+  <div>
+    <button on:click={addItem} class="hover:text-gray-300 pl-2">
+      <span>+</span>
+      <span>Add {field.config.label || 'Item'}</span>
+    </button>
+  </div> 
+</div>

@@ -29,19 +29,19 @@
 </script>
 
 <div class="min-w-full p-4">
-  {#each pageFields as field, i}
-    <Input {field} bind:autoFocus={autoFocus} setFocus={i === 0} />
-  {/each}
-
-  <details>
+  <details class="bg-gray-300 bg-opacity-10 px-2 py-1 mb-4">
     <summary class="font-semibold text-gray-300 cursor-pointer hover:text-gray-100">
-      <h2 class="pb-2 inline-block">GLOBAL</h2>
-      <hr class="border-gray-300 mb-4"/>
+      <h2 class="inline-block">GLOBAL</h2>
     </summary>
+    <hr class="border-gray-300 mb-4 mt-2"/>
     {#each globalFields as field, i}
       <Input {field} bind:autoFocus={autoFocus} setFocus={i === 0} />
     {/each}
   </details>
+
+  {#each pageFields as field, i}
+    <Input {field} bind:autoFocus={autoFocus} setFocus={i === 0} />
+  {/each}
 </div>
 
 <style>
