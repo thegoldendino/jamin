@@ -1,7 +1,7 @@
 export default {
   site: 'rvcd',
   schemaVersion: '0.0.1',
-  startUrl: '/test-p-01',
+  startUrl: '/test-p-02',
   global: {
     INFO_EMAIL: {
       label: 'Info Email',

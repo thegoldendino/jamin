@@ -2,19 +2,20 @@
   import {types} from './types.js';
 
   export let inputClass;
-  export let value = {};
+  export let value;
   export let field;
   export let autoFocus;
   export let setFocus;
 
   let items = {};
   value = value || {};
-  $: label = field.config.label || (field.config.display && value[field.config.display]) || '|'
+  
+  $: label = field.config.label || (field.config.display && value[field.config.display]) || '*'
 
   $: if (Object.entries(field.config.fields).length) {
     items = Object.entries(field.config.fields).reduce((acc, [itemKey, itemConfig]) => {
       return {...acc, [itemKey]: {
-        component: types[itemConfig.type],
+        component: types[itemConfig.type || 'object'],
         el: field.el?.querySelector(`[data-jamin$='.${itemKey}']`),
         config: itemConfig,
         value: value[itemKey],
@@ -25,7 +26,7 @@
 </script>
 
 <div class="bg-gray-300 bg-opacity-10 px-2 py-1" >
-  <details open={field.dbKey.length < 4 || label === '|'}>
+  <details open={field.dbKey.length < 4 || label === '*'}>
     <summary
       class:uppercase="{field.dbKey.length === 3}"
       class="font-semibold text-gray-300 cursor-pointer hover:text-gray-100" >

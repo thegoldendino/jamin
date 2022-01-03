@@ -30,7 +30,7 @@
 
 <div id="container">
   <div id="container-inner">
-    <iframe on:load={loadContentDocument} id="website" src={config.startUrl} title="Website"></iframe>
+    <iframe on:load={loadContentDocument} id="website" src={config.startUrl || '/'} title="Website"></iframe>
     <div id="admin" class="bg-gray-800" style="width:{adminWidth}px">
       <div class="w-full h-full">
         {#key el}
