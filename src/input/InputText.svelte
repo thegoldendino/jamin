@@ -26,4 +26,5 @@
   bind:this={inputEl}
   type="text" 
   class={inputClass} 
-  bind:value={value} />
+  bind:value={value}
+  placeholder={field.config.label} />

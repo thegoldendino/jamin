@@ -23,6 +23,7 @@ specifiers:
   svelte: ^3.44.2
   svelte-check: ^2.2.10
   svelte-drag: ^2.4.0
+  svelte-material-icons: ^1.0.3
   svelte-preprocess: ^4.9.4
   tailwindcss: ~3.0.0
   tslib: ^2.3.1
@@ -53,6 +54,7 @@ devDependencies:
   svelte: 3.44.3
   svelte-check: 2.2.11_780263383bd82c24c3a39ba88c8c2aa6
   svelte-drag: 2.4.0
+  svelte-material-icons: 1.0.3
   svelte-preprocess: 4.10.1_2744a29ed8b290f6e2130b2432ae0c01
   tailwindcss: 3.0.7_16a290f6d0e3717bf6d2667234aebd30
   tslib: 2.3.1
@@ -1901,6 +1903,10 @@ packages:
 
   /svelte-drag/2.4.0:
     resolution: {integrity: sha512-9WY3L1Y+3sAHufb4e7Ml4zHZWkTXL8DfB3NYovOL1ygImBFuMfHEhoeqo/qpWSU/wjO53nzn+T3nu9lHqATAyg==}
+    dev: true
+
+  /svelte-material-icons/1.0.3:
+    resolution: {integrity: sha512-mlOnpJK3eNDTO9JZXWW67YVL6TtpBLKIbfbQucrBdBQklycejOnZLBD1HOVmIEFcta77jIYFg0wnvO6pmloyhw==}
     dev: true
 
   /svelte-preprocess/4.10.1_2744a29ed8b290f6e2130b2432ae0c01:

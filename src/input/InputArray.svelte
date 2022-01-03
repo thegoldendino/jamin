@@ -1,4 +1,5 @@
 <script>
+  import Close from 'svelte-material-icons/CloseCircleOutline.svelte';
   import {types} from './types.js';
 
   export let inputClass;
@@ -56,15 +57,15 @@
 
 <div class="bg-gray-300 bg-opacity-10 px-2 py-1" >
   {#if field.config.label}
-    <summary
+    <div
       class:uppercase="{field.dbKey.length === 3}"
       class="font-semibold text-gray-300 mb-1" >
       {field.config.label}
-    </summary>
+    </div>
   {/if}
 
   {#each value as val, i}
-    <div class="flex mb-1 items-center">
+    <div class="flex mb-1">
       <div class="flex-grow">
         {#if items[i]}
           <svelte:component 
@@ -76,12 +77,12 @@
           />
         {/if}
       </div>
-      <div class="flex-none">
+      <div class="flex-none mt-1">
         <button
           tabindex="-1"
           on:click={() => removeItem(i)} 
-          class="w-8 bg-red-300 ml-2 rounded text-center py-1 text-red-500 font-bold hover:bg-red-500 hover:text-red-300">
-          X
+          class="ml-2 text-gray-500 hover:text-gray-300">
+          <Close size="1.5em"/> 
         </button>
       </div>
     </div>

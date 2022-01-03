@@ -20,7 +20,7 @@
   {/if} -->
   <svelte:component 
     this={types[field.config.type || 'object']} 
-    inputClass="w-full bg-gray-400 text-gray-800 rounded py-1 px-2 focus:bg-gray-200"
+    inputClass="w-full bg-gray-400 text-gray-800 placeholder:text-gray-600 rounded py-1 px-2 focus:bg-gray-200"
     {field}
     bind:autoFocus={autoFocus} setFocus={setFocus}
     bind:value={value}

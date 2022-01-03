@@ -23,20 +23,22 @@
       }};
     }, {})
   }
+
+  $: open = field.dbKey.length < 4;
+  $: summaryUppercase = field.dbKey.length === 3;
+  $: hideHorizontalBar = field.dbKey.length > 3
 </script>
 
 <div class="bg-gray-300 bg-opacity-10 px-2 py-1" >
-  <details open={field.dbKey.length < 4 || label === '*'}>
+  <details {open}>
     <summary
-      class:uppercase="{field.dbKey.length === 3}"
+      class:uppercase="{summaryUppercase}"
       class="font-semibold text-gray-300 cursor-pointer hover:text-gray-100" >
-      <span class="left-arrow mr-2">&#9665;</span>
       <h2 class="inline-block">{label}</h2>
-      <span class="down-arrow ml-2">&#9661;</span>
     </summary>
-    <hr class="border-gray-300 mb-4 mt-2" class:hidden="{field.dbKey.length > 3}" />
+    <hr class="border-gray-300 mt-2 mb-2" class:hidden="{hideHorizontalBar}" />
     {#each Object.keys(field.config.fields) as key, i}
-      <div class="mb-1">
+      <div class="mt-1 mb-1">
         {#if items[key]}
           <svelte:component 
             this={items[key].component} 
@@ -53,28 +55,10 @@
 </div>
 
 <style>
-  details > summary {
-    list-style: none;
-  }
-
   details {
     @apply text-right;
   }
   details[open] {
     @apply text-left;
   }
-  details .left-arrow {
-    @apply inline-block;
-  }
-  details[open] .left-arrow{
-    @apply hidden;
-  }
-  details .down-arrow {
-    @apply hidden;
-  }
-
-  details[open] .down-arrow {
-    @apply inline-block;
-  }
-
 </style>

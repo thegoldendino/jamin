@@ -25,5 +25,6 @@
 <input  
   bind:this={inputEl}
   type="email" 
-  class={inputClass} 
+  class={inputClass}
+  placeholder={field.config.label} 
   bind:value={value} />

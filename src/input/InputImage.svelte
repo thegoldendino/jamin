@@ -32,5 +32,6 @@
   bind:this={inputEl}
   type="url" 
   class={inputClass}
+  placeholder={field.config.label}
   bind:value={value} 
 />
