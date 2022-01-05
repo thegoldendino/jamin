@@ -13,20 +13,21 @@
   let adminWidth = adminWidthInit;
   let el: Document;
   let pageKey: string;
+  let iframe: HTMLIFrameElement;
 
   if (content) {
     contentStore.set(content)
   }
 
-  onMount(() => {
-    const iframe: HTMLIFrameElement = document.querySelector('iframe');
-    console.log('iframe', iframe);
-    iframe.onload = function() {
-      pageKey = iframe.contentWindow.location.pathname;
-      el = iframe.contentDocument;
-      console.log('el', el)
-    };
-  });
+  $: if (iframe) {
+    handleLoad();
+  }
+
+  function handleLoad(e = null) {
+    iframe = iframe || e.target
+    pageKey = iframe.contentWindow.location.pathname;
+    el = iframe.contentDocument;    
+  }
 
   function resizeAdmin(e) {
     adminWidth = adminWidthInit + (-1 * e.detail.offsetX);
@@ -36,7 +37,7 @@
 
 <div id="container">
   <div id="container-inner">
-    <iframe id="website" src={config.startUrl || '/'} title="Website"></iframe>
+    <iframe bind:this={iframe} on:load={handleLoad} id="website" src={config.startUrl || '/'} title="Website"></iframe>
     <div id="admin" class="bg-gray-800" style="width:{adminWidth}px">
       <div class="w-full h-full">
         <Toolbar on:save on:publish />
