@@ -1,8 +1,9 @@
-<script>
+<script lang="ts">
+  import type {FieldType} from '../types';
   import {onMount} from 'svelte';
   export let inputClass = '';
   export let value = '';
-  export let field;
+  export let field: FieldType;
   export let autoFocus;
   export let setFocus;
   

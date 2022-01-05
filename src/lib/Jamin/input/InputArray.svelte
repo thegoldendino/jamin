@@ -1,12 +1,13 @@
-<script>
+<script lang="ts">
   import Close from 'svelte-material-icons/CloseCircleOutline.svelte';
+  import type { FieldType } from '../types/input.type.js';
   import {types} from './types.js';
 
-  export let inputClass;
+  export let inputClass: string;
   export let value = [];
-  export let field;
-  export let autoFocus;
-  export let setFocus;
+  export let field: FieldType;
+  export let autoFocus: boolean;
+  export let setFocus: boolean;
 
   let items = [];
   let focusLast = false;
@@ -19,7 +20,7 @@
   $: if (value.length && template) {
     field.el?.replaceChildren();
     items = value.map((itemVal) => {
-      const itemEl = template.cloneNode(true)
+      const itemEl = template.cloneNode(true) as HTMLElement;
       const itemValEl = itemEl.dataset?.jamin?.endsWith(arrayItemKey) 
         ? itemEl 
         : itemEl?.querySelector(`[data-jamin$='${arrayItemKey}']`)

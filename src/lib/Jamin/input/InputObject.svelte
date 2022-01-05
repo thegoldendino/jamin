@@ -30,7 +30,7 @@
 </script>
 
 <div class="bg-gray-300 bg-opacity-10 px-2 py-1" >
-  <details {open}>
+  <details {open} class="text-right open:text-left">
     <summary
       class:uppercase="{summaryUppercase}"
       class="font-semibold text-gray-300 cursor-pointer hover:text-gray-100" >

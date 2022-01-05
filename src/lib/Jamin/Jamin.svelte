@@ -1,41 +1,48 @@
 <script lang="ts">
+  import type {Config, Content} from './types';
+  import {onMount} from 'svelte'
 	import { draggable } from 'svelte-drag';
-	import Tailwindcss from './Tailwindcss.svelte';
+  import {contentStore } from './store/contentStore';
   import Dashboard from './Dashboard.svelte';
-  import {contentStore } from './store/contentStore.js';
+  import Toolbar from './toolbar/Toolbar.svelte';
 
-  export let config;
-  export let content;
+  export let config: Config;
+  export let content: Content;
 
   let adminWidthInit = 400;
   let adminWidth = adminWidthInit;
-  let el;
-  let pageKey;
+  let el: Document;
+  let pageKey: string;
 
-  $: if (content) {
+  if (content) {
     contentStore.set(content)
   }
-  
-  function loadContentDocument(e) {
-    pageKey = e.target.contentWindow.location.pathname;
-    el = e.target.contentDocument;
-  }
+
+  onMount(() => {
+    const iframe: HTMLIFrameElement = document.querySelector('iframe');
+    console.log('iframe', iframe);
+    iframe.onload = function() {
+      pageKey = iframe.contentWindow.location.pathname;
+      el = iframe.contentDocument;
+      console.log('el', el)
+    };
+  });
 
   function resizeAdmin(e) {
     adminWidth = adminWidthInit + (-1 * e.detail.offsetX);
   }
 </script>
 
-<Tailwindcss />
 
 <div id="container">
   <div id="container-inner">
-    <iframe on:load={loadContentDocument} id="website" src={config.startUrl || '/'} title="Website"></iframe>
+    <iframe id="website" src={config.startUrl || '/'} title="Website"></iframe>
     <div id="admin" class="bg-gray-800" style="width:{adminWidth}px">
       <div class="w-full h-full">
-        {#key el}
-          {#if el}
-            <Dashboard {el} {pageKey} />
+        <Toolbar on:save on:publish />
+        {#key pageKey}
+          {#if el && pageKey && config}
+            <Dashboard {el} {pageKey} {config} />
           {/if}
         {/key}
       </div>

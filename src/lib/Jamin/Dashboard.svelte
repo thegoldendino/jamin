@@ -1,8 +1,10 @@
-<script>
-  import config from '../jamin.config.mjs';
+<script lang="ts">
+  import type {Config} from './types'
   import Input from './input/Input.svelte';
-  export let pageKey;
-  export let el;
+
+  export let config: Config;
+  export let pageKey: string;
+  export let el: Document;
 
   let autoFocus = true;
   
@@ -29,7 +31,7 @@
 </script>
 
 <div class="min-w-full p-4">
-  <details class="bg-gray-300 bg-opacity-10 px-2 py-1 mb-4">
+  <details class="bg-gray-300 bg-opacity-10 px-2 py-1 mb-4 text-right open:text-left">
     <summary class="font-semibold text-gray-300 cursor-pointer hover:text-gray-100">
       <h2 class="inline-block">GLOBAL</h2>
     </summary>
@@ -43,12 +45,3 @@
     <Input {field} bind:autoFocus={autoFocus} setFocus={i === 0} />
   {/each}
 </div>
-
-<style>
-  details {
-    @apply text-right;
-  }
-  details[open] {
-    @apply text-left;
-  }
-</style>

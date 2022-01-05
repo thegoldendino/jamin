@@ -1,4 +1,7 @@
 export default {
+  updatedAt: null,
+  savedAt: null,
+  publishedAt: null,
   global: {
     INFO_EMAIL: 'test@gmail.com',
   },
